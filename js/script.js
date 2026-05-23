@@ -20,12 +20,13 @@ import {
 // ================= FIREBASE =================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAhI4NmRUubh5evowBW2NyY1iwj5TvQok0",
-  authDomain: "bahan-bangunan-nagara.firebaseapp.com",
-  projectId: "bahan-bangunan-nagara",
-  storageBucket: "bahan-bangunan-nagara.firebasestorage.app",
-  messagingSenderId: "938319128907",
-  appId: "1:938319128907:web:10fd618f2bb6be82d820ce"
+  apiKey: "AIzaSyBHkLAgjsRl467-Ayyco9TZ3BfDAgWFd8Y",
+  authDomain: "bahan-bangunan-nagara-a781b.firebaseapp.com",
+  projectId: "bahan-bangunan-nagara-a781b",
+  storageBucket: "bahan-bangunan-nagara-a781b.firebasestorage.app",
+  messagingSenderId: "247148746695",
+  appId: "1:247148746695:web:aca2e488ceb83058ec2be2",
+  measurementId: "G-LHBMSYJB6V"
 };
 
 const app = initializeApp(firebaseConfig);
