@@ -38,7 +38,7 @@ const auth = getAuth(app);
 
 let products = [];
 let cart = [];
-
+let editingId = null;
 window.products = products;
 
 // ================= CLOUDINARY =================
@@ -92,21 +92,28 @@ window.renderProducts = function(data){
 
     <div class="card">
 
-      <img src="${p.image}" alt="${p.name}">
+      <img
+      src="${p.image || 'https://via.placeholder.com/300'}"
+      alt="${p.name}">
 
       <div class="card-body">
 
-        <h3>${p.name}</h3>
+        <h3>${p.name || '-'}</h3>
 
         <p class="price">
-          Rp ${Number(p.price).toLocaleString("id-ID")}
+          Rp ${Number(p.price || 0)
+            .toLocaleString("id-ID")}
         </p>
 
-        <p>Stok: ${p.stock}</p>
+        <p>
+          Stok: ${p.stock || 0}
+        </p>
 
         <button class="btn"
         onclick="addToCart('${p.id}')">
+
           Tambah
+
         </button>
 
       </div>
@@ -635,15 +642,6 @@ window.openEditProduct = function(id){
 
   document.getElementById("editModal")
   .style.display = "block";
-
-}
-
-// ================= CLOSE EDIT =================
-
-window.closeEditModal = function(){
-
-  document.getElementById("editModal")
-  .style.display = "none";
 
 }
 
