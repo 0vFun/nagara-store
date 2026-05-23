@@ -442,13 +442,44 @@ window.renderAdminProducts = function(){
               Rp ${Number(p.price).toLocaleString("id-ID")}
             </p>
 
+            <small>
+              ${p.category} • Stok ${p.stock}
+            </small>
+
           </div>
 
         </div>
 
-        <button onclick="deleteProduct('${p.id}')">
-          Hapus
-        </button>
+        <div>
+
+          <button class="admin-menu-btn"
+          onclick="toggleMenu('${p.id}')">
+
+            ⋮
+
+          </button>
+
+          <div
+          class="admin-dropdown"
+          id="menu-${p.id}">
+
+            <button
+            onclick="openEditProduct('${p.id}')">
+
+              ✏ Edit
+
+            </button>
+
+            <button
+            onclick="deleteProduct('${p.id}')">
+
+              🗑 Hapus
+
+            </button>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -544,6 +575,150 @@ window.deleteProduct = async function(id){
     console.log(err);
 
     alert("Gagal hapus");
+
+  }
+
+}
+
+// ================= TOGGLE MENU =================
+
+window.toggleMenu = function(id){
+
+  const menu =
+    document.getElementById(`menu-${id}`);
+
+  const all =
+    document.querySelectorAll(".admin-dropdown");
+
+  all.forEach(m=>{
+
+    if(m !== menu){
+      m.style.display = "none";
+    }
+
+  });
+
+  menu.style.display =
+    menu.style.display === "block"
+    ? "none"
+    : "block";
+
+}
+
+// ================= OPEN EDIT =================
+
+window.openEditProduct = function(id){
+
+  const product =
+    products.find(p=>p.id===id);
+
+  if(!product) return;
+
+  editingId = id;
+
+  document.getElementById("editName")
+  .value = product.name;
+
+  document.getElementById("editPrice")
+  .value = product.price;
+
+  document.getElementById("editStock")
+  .value = product.stock;
+
+  document.getElementById("editCategory")
+  .value = product.category;
+
+  document.getElementById("editModal")
+  .style.display = "block";
+
+}
+
+// ================= CLOSE EDIT =================
+
+window.closeEditModal = function(){
+
+  document.getElementById("editModal")
+  .style.display = "none";
+
+}
+
+// ================= SAVE EDIT PRODUCT =================
+
+window.saveEditProduct = async function(){
+
+  if(!editingId) return;
+
+  const name =
+    document.getElementById("editName").value;
+
+  const price =
+    Number(document.getElementById("editPrice").value);
+
+  const stock =
+    Number(document.getElementById("editStock").value);
+
+  const category =
+    document.getElementById("editCategory").value;
+
+  const file =
+    document.getElementById("editImage").files[0];
+
+  try{
+
+    let image = null;
+
+    if(file){
+
+      const formData = new FormData();
+
+      formData.append("file", file);
+
+      formData.append(
+        "upload_preset",
+        UPLOAD_PRESET
+      );
+
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        {
+          method:"POST",
+          body:formData
+        }
+      );
+
+      const data = await res.json();
+
+      image = data.secure_url;
+
+    }
+
+    const updateData = {
+      name,
+      price,
+      stock,
+      category
+    };
+
+    if(image){
+
+      updateData.image = image;
+
+    }
+
+    await updateDoc(
+      doc(db,"products",editingId),
+      updateData
+    );
+
+    alert("Produk berhasil diupdate");
+
+    closeEditModal();
+
+  }catch(err){
+
+    console.log(err);
+
+    alert("Gagal update produk");
 
   }
 
