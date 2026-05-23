@@ -291,5 +291,45 @@ id="adminModal">
 <script type="module"
 src="js/script.js"></script>
 
+<div class="modal" id="editModal">
+
+  <div class="modal-box">
+
+    <span class="close"
+    onclick="closeEditModal()">
+      ✖
+    </span>
+
+    <h2>Edit Produk</h2>
+
+    <div class="edit-form">
+
+      <input id="editName" placeholder="Nama Produk">
+
+      <input id="editPrice"
+      type="number"
+      placeholder="Harga">
+
+      <input id="editStock"
+      type="number"
+      placeholder="Stok">
+
+      <input id="editCategory"
+      placeholder="Kategori">
+
+      <input id="editImage"
+      type="file">
+
+    </div>
+
+    <button class="btn"
+    onclick="saveEditProduct()">
+      Simpan Perubahan
+    </button>
+
+  </div>
+
+</div>
+
 </body>
 </html>
