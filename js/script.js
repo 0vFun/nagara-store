@@ -430,7 +430,11 @@ window.renderAdminProducts = function(){
 
       <div class="admin-item">
 
-        <div style="display:flex;gap:10px;align-items:center;">
+        <div style="
+        display:flex;
+        gap:14px;
+        align-items:center;
+        ">
 
           <img src="${p.image}">
 
@@ -439,7 +443,8 @@ window.renderAdminProducts = function(){
             <h4>${p.name}</h4>
 
             <p>
-              Rp ${Number(p.price).toLocaleString("id-ID")}
+              Rp ${Number(p.price)
+                .toLocaleString("id-ID")}
             </p>
 
             <small>
@@ -450,9 +455,10 @@ window.renderAdminProducts = function(){
 
         </div>
 
-        <div>
+        <div style="position:relative;">
 
-          <button class="admin-menu-btn"
+          <button
+          class="admin-menu-btn"
           onclick="toggleMenu('${p.id}')">
 
             ⋮
@@ -466,14 +472,14 @@ window.renderAdminProducts = function(){
             <button
             onclick="openEditProduct('${p.id}')">
 
-              ✏ Edit
+              ✏ Edit Produk
 
             </button>
 
             <button
             onclick="deleteProduct('${p.id}')">
 
-              🗑 Hapus
+              🗑 Hapus Produk
 
             </button>
 
@@ -486,6 +492,30 @@ window.renderAdminProducts = function(){
     `;
 
   });
+
+}
+
+// ================= TOGGLE MENU =================
+
+window.toggleMenu = function(id){
+
+  const target =
+    document.getElementById(`menu-${id}`);
+
+  document
+    .querySelectorAll(".admin-dropdown")
+    .forEach(menu=>{
+
+      if(menu !== target){
+        menu.style.display = "none";
+      }
+
+    });
+
+  target.style.display =
+    target.style.display === "block"
+    ? "none"
+    : "block";
 
 }
 
@@ -580,37 +610,12 @@ window.deleteProduct = async function(id){
 
 }
 
-// ================= TOGGLE MENU =================
-
-window.toggleMenu = function(id){
-
-  const menu =
-    document.getElementById(`menu-${id}`);
-
-  const all =
-    document.querySelectorAll(".admin-dropdown");
-
-  all.forEach(m=>{
-
-    if(m !== menu){
-      m.style.display = "none";
-    }
-
-  });
-
-  menu.style.display =
-    menu.style.display === "block"
-    ? "none"
-    : "block";
-
-}
-
 // ================= OPEN EDIT =================
 
 window.openEditProduct = function(id){
 
   const product =
-    products.find(p=>p.id===id);
+    products.find(p=>p.id === id);
 
   if(!product) return;
 
@@ -721,5 +726,14 @@ window.saveEditProduct = async function(){
     alert("Gagal update produk");
 
   }
+
+}
+
+// ================= CLOSE MODAL =================
+
+window.closeEditModal = function(){
+
+  document.getElementById("editModal")
+  .style.display = "none";
 
 }
