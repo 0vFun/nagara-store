@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nagara Store</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="logo-wrap">
+
+  <img
+  src="assets/HMR.png"
+  alt="HMR Logo"
+  class="logo-img">
+
+  <div class="logo-text">
+    <h2>HMR STORE</h2>
+    <p>Toko Bahan Bangunan</p>
+  </div>
+
+</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#products">Produk</a>
+    <a href="#footer">Kontak</a>
+  </nav>
+
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h1>
+      Toko Bahan Bangunan Premium
+    </h1>
+
+    <p>
+      Material lengkap, murah, dan terpercaya.
+    </p>
+
+    <button class="btn"
+    onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+
+      Belanja Sekarang
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- INI YANG KAMU MAKSUD -->
+<main class="container">
+
+  <!-- SEARCH -->
+  <section class="search-section">
+    <input type="text" id="search" placeholder="Cari produk...">
+  </section>
+
+  <!-- CATEGORY -->
+  <div id="categoryBar" class="category-bar"></div>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products">
+    <div id="grid" class="grid"></div>
+  </section>
+
+</main>
+
+<!-- CART FLOAT -->
+<div class="cart-float" onclick="toggleCart()">
+  🛒 <span id="count">0</span>
+</div>
+
+<!-- MODAL, ADMIN, FOOTER tetap di bawah -->
+
+<!-- CART MODAL -->
+
+<div class="modal"
+id="modal">
+
+  <div class="modal-box">
+
+    <span class="close"
+    onclick="toggleCart()">
+
+      ✖
+
+    </span>
+
+    <h2>Keranjang</h2>
+
+    <div id="cart"></div>
+
+    <h3 id="total">
+      Total: Rp 0
+    </h3>
+
+    <button class="btn"
+    onclick="checkout()">
+
+      Checkout WhatsApp
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- ADMIN -->
+
+<button id="adminBtn"
+onclick="openAdmin()">
+
+  <i class="fas fa-user-shield"></i>
+
+</button>
+
+<div class="modal"
+id="adminModal">
+
+  <div class="modal-box admin-box">
+
+    <span class="close"
+    onclick="closeAdmin()">
+
+      ✖
+
+    </span>
+
+    <!-- LOGIN -->
+
+    <div id="adminLoginBox">
+
+      <h2>Admin Login</h2>
+
+      <input
+      id="email"
+      placeholder="Email">
+
+      <input
+      id="password"
+      type="password"
+      placeholder="Password">
+
+      <button class="btn"
+      onclick="loginAdmin()">
+
+        Login
+
+      </button>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div id="adminDashboard"
+    style="display:none;">
+
+      <div class="admin-top">
+
+        <h2>Dashboard Admin</h2>
+
+        <button class="logout-btn"
+        onclick="logoutAdmin()">
+
+          Logout
+
+        </button>
+
+      </div>
+
+      <div class="form-grid">
+
+        <input
+        id="productName"
+        placeholder="Nama Produk">
+
+        <input
+        id="productPrice"
+        type="number"
+        placeholder="Harga">
+
+        <input
+        id="productStock"
+        type="number"
+        placeholder="Stok">
+
+        <input
+        id="productCategory"
+        placeholder="Kategori">
+
+        <input
+        id="productImage"
+        type="file">
+
+      </div>
+
+      <button class="btn"
+      onclick="addProduct()">
+
+        Tambah Produk
+
+      </button>
+
+      <hr>
+
+      <h3>Daftar Produk</h3>
+
+      <div id="adminProducts"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer id="footer" class="footer">
+
+  <h2>HMR STORE</h2>
+
+  <p>
+    Toko bahan bangunan premium.
+  </p>
+
+  <p>
+    📞 0823-1730-4798
+  </p>
+
+  <div class="operational-hours">
+
+  <h3>Jam Operasional</h3>
+
+  <p>
+    Senin - Minggu
+  </p>
+
+  <p>
+    08:00 - 12:30
+  </p>
+
+  <p>
+    Istirahat
+    12:30 - 13:30
+  </p>
+
+  <p>
+    Buka Lagi
+    13:30 - 15:30
+  </p>
+
+</div>
+
+  <div class="credit-box">
+
+    <img
+    src="assets/LOGO4721.png"
+    alt="Faadhil Digital"
+    class="credit-logo">
+
+    <div>
+
+      <small>Website by</small>
+
+      <h4>Faadhil Digital</h4>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script type="module"
+src="js/script.js"></script>
+
+</body>
+</html>

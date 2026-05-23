@@ -1,0 +1,20 @@
+{
+  "name": "Nagara Store",
+  "short_name": "Nagara",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#ff6600",
+  "icons": [
+    {
+      "src": "LOGO4721.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "LOGO4721.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

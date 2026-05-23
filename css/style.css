@@ -1,0 +1,430 @@
+:root {
+  --primary: #ff6600;
+  --dark: #111;
+  --soft: #f5f5f5;
+  --white: #fff;
+}
+
+/* RESET */
+body {
+  margin: 0;
+  font-family: Segoe UI, sans-serif;
+  background: var(--soft);
+}
+
+/* HEADER */
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  background:rgba(255,255,255,.9);
+  position:sticky;
+  top:0;
+  z-index:999;
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+  backdrop-filter:blur(10px);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #111;
+}
+
+/* HERO */
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background:
+    linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h1 {
+  font-size: 58px;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+/* BUTTON */
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+/* SEARCH */
+.search-section {
+  padding: 30px;
+  text-align: center;
+}
+
+.search-section input {
+  width: 80%;
+  max-width: 600px;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
+  outline:none;
+  font-size:15px;
+}
+
+/* CATEGORY */
+.category-bar {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px 20px;
+  overflow: auto;
+}
+
+.category-btn {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* PRODUCTS */
+.products {
+  padding: 20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;
+}
+
+.card {
+  background:#fff;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.price {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:99999;
+  overflow:auto;
+  padding:20px;
+}
+
+.modal-box{
+  background:#fff;
+  width:95%;
+  max-width:700px;
+  margin:40px auto;
+  border-radius:24px;
+  padding:24px;
+
+  max-height:85vh;
+  overflow-y:auto;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.item,
+.admin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* FORM */
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.form-grid input,
+.form-grid select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+/* LOGOUT */
+.logout-btn {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+/* FLOAT BUTTONS */
+.cart-float,
+#adminBtn {
+  position: fixed;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cart-float {
+  bottom: 20px;
+  background: var(--primary);
+}
+
+#adminBtn {
+  bottom: 95px;
+  background: #111;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 60px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:1200px){
+
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+}
+
+@media (max-width:992px){
+
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .grid{
+  grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+/* ===== LAYOUT FIX CORE ===== */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* spacing antar section */
+.hero,
+.search-section,
+.category-bar,
+.products {
+  margin-bottom: 20px;
+}
+
+/* FIX category scroll biar enak mobile */
+.category-bar {
+  scrollbar-width: none;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* FIX card hover biar premium feel */
+.card {
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* FIX modal biar tidak “nge-lag” tampilan */
+.modal {
+  backdrop-filter: blur(6px);
+}
+
+/* FIX admin button biar tidak tabrakan UI */
+#adminBtn {
+  z-index: 9999;
+}
+
+/* FIX cart float priority */
+.cart-float {
+  z-index: 9999;
+}
+
+/* CART BUTTON */
+
+.item button{
+  border:none;
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+  margin:0 4px;
+}
+
+.admin-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+/* LOGO */
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-img{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
+
+.logo-text h2{
+  margin:0;
+  font-size:22px;
+  color:#111;
+}
+
+.logo-text p{
+  margin:0;
+  font-size:13px;
+  color:#666;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+  color:var(--primary);
+}
+
+/* CREDIT */
+
+.credit-box{
+  margin-top:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+}
+
+.credit-logo{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+  border-radius:12px;
+  background:#fff;
+  padding:6px;
+}
+
+.credit-box h4{
+  margin:0;
+  font-size:16px;
+}
+
+.credit-box small{
+  color:#bbb;
+}
+
+#adminProducts{
+  max-height:400px;
+  overflow-y:auto;
+  padding-right:10px;
+}
+
+.operational-hours{
+  margin-top:30px;
+}
+
+.operational-hours h3{
+  margin-bottom:10px;
+}
+
+.operational-hours p{
+  margin:6px 0;
+  color:#ddd;
+}
