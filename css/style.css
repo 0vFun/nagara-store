@@ -1175,11 +1175,36 @@ nav a {
   to{transform:rotate(360deg);}
 }
 
-.store-status-bar{
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 999;
+.store-status-mini{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  font-size:13px;
+  font-weight:600;
+  z-index:999;
+  transition:.3s;
+}
+
+.store-status-mini .dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+
+.store-status-mini.open .dot{
+  background:#22c55e;
+}
+
+.store-status-mini.closed .dot{
+  background:#ef4444;
 }
 
 .status-card{
