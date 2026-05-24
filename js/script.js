@@ -1,3 +1,9 @@
+let storeStatus = {
+  open: true,
+  openTime: "08:00",
+  closeTime: "15:30"
+};
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 import {
@@ -880,3 +886,29 @@ window.addEventListener("load", () => {
     setTimeout(() => loader.style.display = "none", 300);
   }
 });
+
+function renderStoreStatus() {
+  const el = document.getElementById("storeStatusBar");
+  if (!el) return;
+
+  el.innerHTML = `
+    <div class="status-card ${storeStatus.open ? "open" : "closed"}">
+      <span class="dot"></span>
+      <div>
+        <strong>
+          ${storeStatus.open ? "TOKO BUKA" : "TOKO TUTUP"}
+        </strong>
+        <p>${storeStatus.openTime} - ${storeStatus.closeTime}</p>
+      </div>
+    </div>
+  `;
+}
+
+window.addEventListener("load", () => {
+  renderStoreStatus();
+});
+
+window.toggleStoreStatus = function () {
+  storeStatus.open = !storeStatus.open;
+  renderStoreStatus();
+};
