@@ -203,31 +203,18 @@ window.addToCart = function(id){
   const product = products.find(p => p.id === id);
   if(!product) return;
 
-  const product = products.find(
-    p => p.id === id
-  );
-
-  if(!product) return;
-
-  const exist = cart.find(
-    c => c.id === id
-  );
+  const exist = cart.find(c => c.id === id);
 
   if(exist){
-
     exist.qty++;
-
-  }else{
-
+  } else {
     cart.push({
       ...product,
-      qty:1
+      qty: 1
     });
-
   }
 
   updateCart();
-
 }
 
 // ================= UPDATE CART =================
@@ -896,10 +883,21 @@ window.closeProductModal = function(){
 }
 
 // ================= LOADING =================
-window.addEventListener("load", () => {
+wwindow.addEventListener("load", () => {
+
+  // 1. hide loader
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.display = "none";
+  }
+
+  // 2. render toko status
   renderStoreStatus();
   updateStoreAdminUI();
-  syncStoreUI(); // 🔥 WAJIB
+
+  // 3. sync UI kiri bawah
+  syncStoreUI();
+
 });
 
 function renderStoreStatus() {
@@ -927,7 +925,7 @@ window.toggleStoreStatus = function () {
 
   renderStoreStatus();
   updateStoreAdminUI();
-  syncStoreUI(); // 🔥 INI YANG BENAR
+  syncStoreUI(); // UPDATE KIRI BAWAH
 }
 
 function updateStoreAdminUI(){
@@ -962,11 +960,6 @@ function updateStoreAdminUI(){
 
 }
 
-window.addEventListener("load", () => {
-  renderStoreStatus();
-  updateStoreAdminUI();
-});
-
 function setStoreStatus(isOpen){
   const el = document.getElementById("storeStatusMini");
 
@@ -983,6 +976,23 @@ function setStoreStatus(isOpen){
 
 function isStoreOpen() {
   return storeStatus.open;
+}
+
+function syncStoreUI() {
+  const mini = document.getElementById("storeStatusMini");
+  const text = document.getElementById("storeStatusTextMini");
+
+  if (!mini || !text) return;
+
+  if (storeStatus.open) {
+    mini.classList.add("open");
+    mini.classList.remove("closed");
+    text.innerText = "Open";
+  } else {
+    mini.classList.add("closed");
+    mini.classList.remove("open");
+    text.innerText = "Closed";
+  }
 }
 
 function syncStoreUI() {
