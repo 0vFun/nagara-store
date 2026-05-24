@@ -16,6 +16,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 
 <body>
 
+<!-- LOADING ANIMATION -->
+
+<div id="loader" class="loader">
+  <div class="spinner"></div>
+</div>
+
+<!-- HTML Floating Badge -->
+
+<div id="openStatus" class="status-badge">
+  🟢 Buka Sekarang
+</div>
+
 <!-- HEADER -->
 <header class="header">
 
@@ -221,6 +233,9 @@ onclick="openAdmin()">
 
       </div>
 
+      <input id="storeStatus"
+      placeholder="Status toko (Buka / Tutup)">
+
       <!-- STATS -->
 
       <div class="admin-stats">
@@ -396,6 +411,104 @@ onclick="openAdmin()">
 
 </section>
 
+<!-- RETURN POLICY -->
+
+<section class="policy-section">
+
+  <div class="policy-box">
+
+    <div class="policy-icon">
+
+      <i class="fas fa-circle-info"></i>
+
+    </div>
+
+    <div class="policy-content">
+
+      <h2>
+        Kebijakan Return & Komplain
+      </h2>
+
+      <p>
+
+        Jika terdapat kendala pada produk,
+        kesalahan pesanan, atau barang mengalami
+        kerusakan, silakan segera konsultasikan
+        kepada admin kami untuk proses bantuan,
+        komplain, maupun return produk.
+
+      </p>
+
+      <a
+      href="https://wa.me/6282317304798"
+      target="_blank"
+      class="policy-btn">
+
+        Hubungi Admin
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA WHATSAPP -->
+
+<section class="cta-wa">
+
+  <div class="cta-box">
+
+    <h2>
+      Butuh Bantuan Memilih Material?
+    </h2>
+
+    <p>
+      Konsultasikan langsung dengan admin kami via WhatsApp.
+      Respon cepat & siap bantu kebutuhan proyek Anda.
+    </p>
+
+    <a href="https://wa.me/6282317304798"
+    target="_blank"
+    class="cta-btn">
+
+      💬 Chat WhatsApp Sekarang
+
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="faq">
+
+  <h2>Pertanyaan yang Sering Diajukan</h2>
+
+  <div class="faq-item">
+    <h3>Apakah bisa kirim ke luar kota?</h3>
+    <p>Ya, kami melayani pengiriman ke berbagai daerah sesuai ongkir ekspedisi.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Apakah bisa pembelian grosir?</h3>
+    <p>Bisa, kami menyediakan harga khusus untuk pembelian dalam jumlah besar.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Apakah stok selalu update?</h3>
+    <p>Ya, stok dikelola langsung melalui admin panel secara realtime.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Apakah bisa konsultasi dulu?</h3>
+    <p>Tentu, silakan hubungi admin melalui WhatsApp.</p>
+  </div>
+
+</section>
+
 <!-- FOOTER -->
 
 <footer id="footer" class="footer">
@@ -455,7 +568,7 @@ onclick="openAdmin()">
 
       <p>
         <i class="fas fa-location-dot"></i>
-        Nagara, Hulu Sungai Selatan
+        Habirau, Nagara, Hulu Sungai Selatan
       </p>
 
       <p>
