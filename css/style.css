@@ -1267,3 +1267,28 @@ nav a {
   max-height: 60px;
   object-fit: contain;
 }
+
+.store-toggle-wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:15px;
+}
+
+.store-toggle-btn{
+  border:none;
+  padding:12px 24px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+  color:white;
+}
+
+.store-toggle-btn.open{
+  background:#22c55e;
+}
+
+.store-toggle-btn.closed{
+  background:#ef4444;
+}
