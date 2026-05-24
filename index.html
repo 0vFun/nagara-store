@@ -123,8 +123,6 @@ id="modal">
 
 </div>
 
-<!-- ADMIN -->
-
 <button id="adminBtn"
 onclick="openAdmin()">
 
@@ -132,10 +130,11 @@ onclick="openAdmin()">
 
 </button>
 
-<div class="modal"
-id="adminModal">
+<!-- ADMIN MODAL -->
 
-  <div class="modal-box admin-box">
+<div class="modal" id="adminModal">
+
+  <div class="modal-box admin-premium-box">
 
     <span class="close"
     onclick="closeAdmin()">
@@ -146,23 +145,52 @@ id="adminModal">
 
     <!-- LOGIN -->
 
-    <div id="adminLoginBox">
+    <div id="adminLoginBox"
+    class="admin-login">
 
-      <h2>Admin Login</h2>
+      <div class="admin-login-top">
 
-      <input
-      id="email"
-      placeholder="Email">
+        <div class="admin-icon">
 
-      <input
-      id="password"
-      type="password"
-      placeholder="Password">
+          <i class="fas fa-shield-halved"></i>
 
-      <button class="btn"
+        </div>
+
+        <h2>Admin Panel</h2>
+
+        <p>
+          Login untuk mengelola produk dan dashboard toko.
+        </p>
+
+      </div>
+
+      <div class="admin-input-group">
+
+        <label>Email</label>
+
+        <input
+        id="email"
+        type="email"
+        placeholder="Masukkan email">
+
+      </div>
+
+      <div class="admin-input-group">
+
+        <label>Password</label>
+
+        <input
+        id="password"
+        type="password"
+        placeholder="Masukkan password">
+
+      </div>
+
+      <button
+      class="admin-login-btn"
       onclick="loginAdmin()">
 
-        Login
+        Login Dashboard
 
       </button>
 
@@ -173,11 +201,18 @@ id="adminModal">
     <div id="adminDashboard"
     style="display:none;">
 
-      <div class="admin-top">
+      <div class="admin-header">
 
-        <h2>Dashboard Admin</h2>
+        <div>
 
-        <button class="logout-btn"
+          <small>ADMIN DASHBOARD</small>
+
+          <h2>HMR STORE</h2>
+
+        </div>
+
+        <button
+        class="logout-btn"
         onclick="logoutAdmin()">
 
           Logout
@@ -186,44 +221,83 @@ id="adminModal">
 
       </div>
 
-      <div class="form-grid">
+      <!-- STATS -->
 
-        <input
-        id="productName"
-        placeholder="Nama Produk">
+      <div class="admin-stats">
 
-        <input
-        id="productPrice"
-        type="number"
-        placeholder="Harga">
+        <div class="admin-stat-card">
 
-        <input
-        id="productStock"
-        type="number"
-        placeholder="Stok">
+          <h3 id="totalProducts">
+            0
+          </h3>
 
-        <input
-        id="productCategory"
-        placeholder="Kategori">
+          <p>Total Produk</p>
 
-        <input
-        id="productImage"
-        type="file">
+        </div>
+
+        <div class="admin-stat-card">
+
+          <h3 id="totalStock">
+            0
+          </h3>
+
+          <p>Total Stok</p>
+
+        </div>
 
       </div>
 
-      <button class="btn"
-      onclick="addProduct()">
+      <!-- FORM -->
 
-        Tambah Produk
+      <div class="admin-form-card">
 
-      </button>
+        <h3>Tambah Produk</h3>
 
-      <hr>
+        <div class="form-grid">
 
-      <h3>Daftar Produk</h3>
+          <input
+          id="productName"
+          placeholder="Nama Produk">
 
-      <div id="adminProducts"></div>
+          <input
+          id="productPrice"
+          type="number"
+          placeholder="Harga">
+
+          <input
+          id="productStock"
+          type="number"
+          placeholder="Stok">
+
+          <input
+          id="productCategory"
+          placeholder="Kategori">
+
+          <input
+          id="productImage"
+          type="file">
+
+        </div>
+
+        <button
+        class="btn"
+        onclick="addProduct()">
+
+          Tambah Produk
+
+        </button>
+
+      </div>
+
+      <!-- PRODUCT LIST -->
+
+      <div class="admin-form-card">
+
+        <h3>Daftar Produk</h3>
+
+        <div id="adminProducts"></div>
+
+      </div>
 
     </div>
 
