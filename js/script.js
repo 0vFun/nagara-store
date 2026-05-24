@@ -901,16 +901,17 @@ function renderStoreStatus() {
       </div>
     </div>
   `;
+
+  // ✅ INI YANG KURANG
+  setStoreStatus(storeStatus.open);
 }
 
 window.toggleStoreStatus = function () {
-
   storeStatus.open = !storeStatus.open;
 
   renderStoreStatus();
-
   updateStoreAdminUI();
-
+  setStoreStatus(storeStatus.open); // 🔥 penting
 }
 
 function updateStoreAdminUI(){
@@ -945,12 +946,10 @@ function updateStoreAdminUI(){
 
 }
 
-window.addEventListener("load", ()=>{
-
+window.addEventListener("load", () => {
   renderStoreStatus();
-
   updateStoreAdminUI();
-
+  setStoreStatus(storeStatus.open); // 🔥 ini juga wajib
 });
 
 function setStoreStatus(isOpen){
