@@ -1,3 +1,7 @@
+window.addEventListener("error", (e) => {
+  console.log("JS CRASH:", e.message);
+});
+
 let storeStatus = {
   open: true,
   openTime: "08:00",
@@ -884,20 +888,16 @@ window.closeProductModal = function(){
 
 // ================= LOADING =================
 window.addEventListener("load", () => {
+  try {
+    const loader = document.getElementById("loader");
+    if (loader) loader.style.display = "none";
 
-  // 1. hide loader
-  const loader = document.getElementById("loader");
-  if (loader) {
-    loader.style.display = "none";
+    renderStoreStatus?.();
+    updateStoreAdminUI?.();
+    syncStoreUI?.();
+  } catch (e) {
+    console.log("LOAD ERROR:", e);
   }
-
-  // 2. render toko status
-  renderStoreStatus();
-  updateStoreAdminUI();
-
-  // 3. sync UI kiri bawah
-  syncStoreUI();
-
 });
 
 function renderStoreStatus() {
@@ -976,23 +976,6 @@ function setStoreStatus(isOpen){
 
 function isStoreOpen() {
   return storeStatus.open;
-}
-
-function syncStoreUI() {
-  const mini = document.getElementById("storeStatusMini");
-  const text = document.getElementById("storeStatusTextMini");
-
-  if (!mini || !text) return;
-
-  if (storeStatus.open) {
-    mini.classList.add("open");
-    mini.classList.remove("closed");
-    text.innerText = "Open";
-  } else {
-    mini.classList.add("closed");
-    mini.classList.remove("open");
-    text.innerText = "Closed";
-  }
 }
 
 function syncStoreUI() {
