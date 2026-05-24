@@ -90,7 +90,8 @@ window.renderProducts = function(data){
 
   grid.innerHTML = data.map(p=>`
 
-    <div class="card">
+    <div class="card"
+    onclick="openProductDetail('${p.id}')">
 
       <img
       src="${p.image || 'https://via.placeholder.com/300'}"
@@ -732,6 +733,56 @@ window.saveEditProduct = async function(){
 window.closeEditModal = function(){
 
   document.getElementById("editModal")
+  .style.display = "none";
+
+}
+
+// ================= PRODUCT DETAIL =================
+
+window.openProductDetail = function(id){
+
+  const product = products.find(
+    p => p.id === id
+  );
+
+  if(!product) return;
+
+  document.getElementById("detailImage")
+  .src = product.image;
+
+  document.getElementById("detailName")
+  .innerText = product.name;
+
+  document.getElementById("detailCategory")
+  .innerText = product.category;
+
+  document.getElementById("detailPrice")
+  .innerText =
+    "Rp " +
+    Number(product.price)
+    .toLocaleString("id-ID");
+
+  document.getElementById("detailStock")
+  .innerText =
+    "Stok tersedia: " + product.stock;
+
+  document.getElementById("detailBtn")
+  .onclick = ()=>{
+
+    addToCart(product.id);
+
+  };
+
+  document.getElementById("productModal")
+  .style.display = "block";
+
+}
+
+// ================= CLOSE PRODUCT MODAL =================
+
+window.closeProductModal = function(){
+
+  document.getElementById("productModal")
   .style.display = "none";
 
 }
