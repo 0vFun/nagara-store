@@ -883,7 +883,7 @@ window.closeProductModal = function(){
 }
 
 // ================= LOADING =================
-wwindow.addEventListener("load", () => {
+window.addEventListener("load", () => {
 
   // 1. hide loader
   const loader = document.getElementById("loader");
