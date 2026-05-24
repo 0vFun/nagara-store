@@ -976,3 +976,17 @@ window.addEventListener("load", ()=>{
   updateStoreAdminUI();
 
 });
+
+function setStoreStatus(isOpen){
+  const el = document.getElementById("storeStatusMini");
+
+  if(isOpen){
+    el.classList.add("open");
+    el.classList.remove("closed");
+    document.getElementById("storeStatusTextMini").innerText = "Open";
+  } else {
+    el.classList.add("closed");
+    el.classList.remove("open");
+    document.getElementById("storeStatusTextMini").innerText = "Closed";
+  }
+}
