@@ -195,6 +195,14 @@ if(searchInput){
 
 window.addToCart = function(id){
 
+  if(!storeStatus.open){
+    alert("Toko sedang tutup");
+    return;
+  }
+
+  const product = products.find(p => p.id === id);
+  if(!product) return;
+
   const product = products.find(
     p => p.id === id
   );
@@ -323,6 +331,16 @@ window.toggleCart = function(){
 // ================= CHECKOUT =================
 
 window.checkout = function(){
+
+  if(!storeStatus.open){
+    alert("Toko sedang tutup");
+    return;
+  }
+
+  if(cart.length === 0){
+    alert("Keranjang kosong");
+    return;
+  }
 
   if(cart.length === 0){
 
@@ -911,7 +929,7 @@ window.toggleStoreStatus = function () {
 
   renderStoreStatus();
   updateStoreAdminUI();
-  setStoreStatus(storeStatus.open); // 🔥 penting
+  syncStoreUI(); // 🔥 INI YANG BENAR
 }
 
 function updateStoreAdminUI(){
@@ -949,7 +967,6 @@ function updateStoreAdminUI(){
 window.addEventListener("load", () => {
   renderStoreStatus();
   updateStoreAdminUI();
-  setStoreStatus(storeStatus.open); // 🔥 ini juga wajib
 });
 
 function setStoreStatus(isOpen){
@@ -963,5 +980,26 @@ function setStoreStatus(isOpen){
     el.classList.add("closed");
     el.classList.remove("open");
     document.getElementById("storeStatusTextMini").innerText = "Closed";
+  }
+}
+
+function isStoreOpen() {
+  return storeStatus.open;
+}
+
+function syncStoreUI() {
+  const mini = document.getElementById("storeStatusMini");
+  const text = document.getElementById("storeStatusTextMini");
+
+  if (!mini || !text) return;
+
+  if (storeStatus.open) {
+    mini.classList.add("open");
+    mini.classList.remove("closed");
+    text.innerText = "Open";
+  } else {
+    mini.classList.add("closed");
+    mini.classList.remove("open");
+    text.innerText = "Closed";
   }
 }
