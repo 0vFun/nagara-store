@@ -994,3 +994,30 @@ function syncStoreUI() {
     text.innerText = "Closed";
   }
 }
+
+// ================= FIREBASE =================
+
+document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+
+    // tutup yang lain (biar accordion beneran)
+    document.querySelectorAll(".faq-item").forEach(el => {
+      if (el !== item) {
+        el.classList.remove("active");
+        el.querySelector(".faq-answer").style.maxHeight = null;
+      }
+    });
+
+    // toggle current
+    item.classList.toggle("active");
+
+    const answer = item.querySelector(".faq-answer");
+
+    if (item.classList.contains("active")) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+      answer.style.maxHeight = null;
+    }
+  });
+});
