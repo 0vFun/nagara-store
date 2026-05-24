@@ -379,7 +379,18 @@ window.loginAdmin = async function(){
   const password =
     document.getElementById("password").value;
 
+  const btn =
+    document.querySelector(".admin-login-btn");
+
   try{
+
+    // LOADING STYLE
+    btn.disabled = true;
+
+    btn.innerHTML = `
+      <span class="btn-loader"></span>
+      Memproses...
+    `;
 
     await signInWithEmailAndPassword(
       auth,
@@ -392,6 +403,14 @@ window.loginAdmin = async function(){
     alert("Login gagal");
 
     console.log(err);
+
+  }finally{
+
+    btn.disabled = false;
+
+    btn.innerHTML = `
+      Login Dashboard
+    `;
 
   }
 
