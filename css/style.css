@@ -1219,3 +1219,51 @@ nav a {
   height: 10px;
   border-radius: 50%;
 }
+
+.brands{
+  padding: 80px 20px;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.brands-top small{
+  color: #64748b;
+  letter-spacing: 2px;
+}
+
+.brands-top h2{
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.brands-top p{
+  max-width: 600px;
+  margin: auto;
+  color: #64748b;
+}
+
+.brands-grid{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.brand-card{
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.brand-card:hover{
+  transform: translateY(-5px);
+}
+
+.brand-card img{
+  width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+}
