@@ -851,3 +851,32 @@ window.closeProductModal = function(){
   .style.display = "none";
 
 }
+
+window.updateStoreStatus = function(){
+
+  const status = document.getElementById("storeStatus").value;
+
+  const badge = document.getElementById("openStatus");
+
+  if(!badge) return;
+
+  if(status.toLowerCase() === "tutup"){
+
+    badge.innerHTML = "🔴 Tutup Sekarang";
+
+  }else{
+
+    badge.innerHTML = "🟢 Buka Sekarang";
+
+  }
+
+}
+
+// ================= LOADING =================
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => loader.style.display = "none", 300);
+  }
+});
