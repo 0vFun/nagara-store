@@ -111,7 +111,7 @@ window.renderProducts = function(data){
         </p>
 
         <button class="btn"
-        onclick="addToCart('${p.id}')">
+        onclick="event.stopPropagation(); addToCart('${p.id}')">
 
           Tambah
 
@@ -779,6 +779,71 @@ window.openProductDetail = function(id){
 }
 
 // ================= CLOSE PRODUCT MODAL =================
+
+window.closeProductModal = function(){
+
+  document.getElementById("productModal")
+  .style.display = "none";
+
+}
+
+// UPDATE STATS
+
+const totalProducts =
+products.length;
+
+const totalStock =
+products.reduce(
+  (total,p)=> total + Number(p.stock || 0),
+  0
+);
+
+document.getElementById("totalProducts")
+.innerText = totalProducts;
+
+document.getElementById("totalStock")
+.innerText = totalStock;
+
+window.openProductModal = function(id){
+
+  const product = products.find(
+    p => p.id === id
+  );
+
+  if(!product) return;
+
+  document.getElementById("detailImage")
+  .src = product.image;
+
+  document.getElementById("detailName")
+  .innerText = product.name;
+
+  document.getElementById("detailCategory")
+  .innerText = product.category;
+
+  document.getElementById("detailPrice")
+  .innerText =
+    "Rp " +
+    Number(product.price)
+    .toLocaleString("id-ID");
+
+  document.getElementById("detailStock")
+  .innerText =
+    "Stok: " + product.stock;
+
+  document.getElementById("detailBtn")
+  .onclick = ()=>{
+
+    addToCart(product.id);
+
+    closeProductModal();
+
+  };
+
+  document.getElementById("productModal")
+  .style.display = "block";
+
+}
 
 window.closeProductModal = function(){
 
