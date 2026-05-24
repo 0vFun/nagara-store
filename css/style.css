@@ -1152,19 +1152,6 @@ nav a {
   line-height:1.6;
 }
 
-.status-badge{
-  position:fixed;
-  bottom:90px;
-  left:20px;
-  background:#fff;
-  padding:10px 14px;
-  border-radius:12px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.15);
-  font-weight:600;
-  font-size:14px;
-  z-index:999;
-}
-
 .loader{
   position:fixed;
   inset:0;
@@ -1291,4 +1278,182 @@ nav a {
 
 .store-toggle-btn.closed{
   background:#ef4444;
+}
+
+/* ===== STORE CONTROL ===== */
+
+.store-toggle-wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+  border-radius:18px;
+  background:#fafafa;
+  border:1px solid #eee;
+}
+
+#storeStatusText{
+  font-size:16px;
+  font-weight:700;
+  color:#111;
+}
+
+.store-toggle-btn{
+  border:none;
+  min-width:120px;
+  padding:14px 20px;
+  border-radius:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
+  color:#fff;
+  letter-spacing:.5px;
+}
+
+.store-toggle-btn.open{
+  background:linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+}
+
+.store-toggle-btn.closed{
+  background:linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+}
+
+.store-toggle-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+/* ===== ADMIN LOADING ===== */
+
+.admin-loader{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999999;
+}
+
+.admin-loader-box{
+  width:90%;
+  max-width:360px;
+  background:#fff;
+  border-radius:32px;
+  padding:40px 30px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
+  border:1px solid #f1f1f1;
+}
+
+.admin-loader-logo{
+  width:90px;
+  height:90px;
+  margin:auto;
+  margin-bottom:24px;
+  border-radius:28px;
+  background:linear-gradient(
+    135deg,
+    #ff6600,
+    #ff8533
+  );
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  animation:adminPulse 1.2s infinite;
+}
+
+.admin-loader-box h2{
+  margin:0;
+  font-size:28px;
+  color:#111;
+}
+
+.admin-loader-box p{
+  color:#777;
+  margin-top:10px;
+  margin-bottom:26px;
+}
+
+.admin-loader-bar{
+  width:100%;
+  height:12px;
+  border-radius:999px;
+  background:#f1f1f1;
+  overflow:hidden;
+}
+
+.admin-loader-progress{
+  width:40%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(
+    90deg,
+    #ff6600,
+    #ff8533
+  );
+  animation:loadingMove 1s infinite linear;
+}
+
+@keyframes loadingMove{
+
+  0%{
+    transform:translateX(-100%);
+  }
+
+  100%{
+    transform:translateX(300%);
+  }
+
+}
+
+@keyframes adminPulse{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+
+}
+
+/* LOGIN BUTTON LOADING */
+
+.admin-login-btn{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+
+.admin-login-btn:disabled{
+  opacity:.8;
+  cursor:not-allowed;
+}
+
+.btn-loader{
+  width:18px;
+  height:18px;
+  border:3px solid rgba(255,255,255,.3);
+  border-top:3px solid #fff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
 }
