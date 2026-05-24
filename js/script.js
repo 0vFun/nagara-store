@@ -877,26 +877,6 @@ window.closeProductModal = function(){
 
 }
 
-window.updateStoreStatus = function(){
-
-  const status = document.getElementById("storeStatus").value;
-
-  const badge = document.getElementById("openStatus");
-
-  if(!badge) return;
-
-  if(status.toLowerCase() === "tutup"){
-
-    badge.innerHTML = "🔴 Tutup Sekarang";
-
-  }else{
-
-    badge.innerHTML = "🟢 Buka Sekarang";
-
-  }
-
-}
-
 // ================= LOADING =================
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
@@ -922,10 +902,6 @@ function renderStoreStatus() {
     </div>
   `;
 }
-
-window.addEventListener("load", () => {
-  renderStoreStatus();
-});
 
 window.toggleStoreStatus = function () {
 
