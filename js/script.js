@@ -909,6 +909,51 @@ window.addEventListener("load", () => {
 });
 
 window.toggleStoreStatus = function () {
+
   storeStatus.open = !storeStatus.open;
+
   renderStoreStatus();
-};
+
+  updateStoreAdminUI();
+
+}
+
+function updateStoreAdminUI(){
+
+  const text =
+    document.getElementById("storeStatusText");
+
+  const btn =
+    document.getElementById("storeToggleBtn");
+
+  if(!text || !btn) return;
+
+  if(storeStatus.open){
+
+    text.innerText = "Toko Buka";
+
+    btn.innerText = "BUKA";
+
+    btn.classList.add("open");
+    btn.classList.remove("closed");
+
+  }else{
+
+    text.innerText = "Toko Tutup";
+
+    btn.innerText = "TUTUP";
+
+    btn.classList.add("closed");
+    btn.classList.remove("open");
+
+  }
+
+}
+
+window.addEventListener("load", ()=>{
+
+  renderStoreStatus();
+
+  updateStoreAdminUI();
+
+});
