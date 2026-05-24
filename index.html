@@ -25,12 +25,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
   <div class="spinner"></div>
 </div>
 
-<!-- HTML Floating Badge -->
-
-<div id="openStatus" class="status-badge">
-  🟢 Buka Sekarang
-</div>
-
 <!-- HEADER -->
 <header class="header">
 
@@ -236,9 +230,6 @@ onclick="openAdmin()">
 
       </div>
 
-      <input id="storeStatus"
-      placeholder="Status toko (Buka / Tutup)">
-
       <!-- STATS -->
 
       <div class="admin-stats">
@@ -269,7 +260,7 @@ onclick="openAdmin()">
 
 <div class="admin-form-card">
 
-  <h3>Status Toko</h3>
+  <h3>Kontrol Toko</h3>
 
   <div class="store-toggle-wrap">
 
@@ -795,9 +786,36 @@ onclick="openAdmin()">
 
 </div>
 
+<!-- ADMIN LOADING -->
+
+<div id="adminLoader" class="admin-loader">
+
+  <div class="admin-loader-box">
+
+    <div class="admin-loader-logo">
+
+      <i class="fas fa-shield-halved"></i>
+
+    </div>
+
+    <h2>Memuat Dashboard</h2>
+
+    <p>
+      Menyiapkan panel admin...
+    </p>
+
+    <div class="admin-loader-bar">
+
+      <div class="admin-loader-progress"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
 <script type="module"
 src="js/script.js"></script>
-
 
 </body>
 </html>
