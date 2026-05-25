@@ -66,9 +66,7 @@ async function loadStoreStatus(){
 
     }
 
-    renderStoreStatus();
-    updateStoreAdminUI();
-    syncStoreUI();
+    updateStoreUI();
 
   }catch(err){
 
@@ -922,62 +920,55 @@ window.closeProductModal = function(){
 
 // ================= LOADING =================
 window.addEventListener("DOMContentLoaded", () => {
-  try {
-    const loader = document.getElementById("loader");
-    if (loader) loader.style.display = "none";
 
-    renderStoreStatus?.();
-    updateStoreAdminUI?.();
-    syncStoreUI?.();
+  try{
+
+    const loader =
+      document.getElementById("loader");
+
+    if(loader){
+      loader.style.display = "none";
+    }
+
     loadStoreStatus();
+
     onSnapshot(storeRef, (snap)=>{
 
-  if(snap.exists()){
+      if(snap.exists()){
 
-    storeStatus = snap.data();
+        storeStatus = snap.data();
 
-    renderStoreStatus();
-    updateStoreAdminUI();
-    syncStoreUI();
+        updateStoreUI();
 
-  }
+      }
 
-});
+    });
 
-  } catch (e) {
+  }catch(e){
+
     console.log("LOAD ERROR:", e);
+
   }
+
 });
-
-function renderStoreStatus() {
-  const el = document.getElementById("storeStatusBar");
-  if (!el) return;
-
-  el.innerHTML = `
-    <div class="status-card ${storeStatus.open ? "open" : "closed"}">
-      <span class="dot"></span>
-      <div>
-        <strong>
-          ${storeStatus.open ? "TOKO BUKA" : "TOKO TUTUP"}
-        </strong>
-        <p>${storeStatus.openTime} - ${storeStatus.closeTime}</p>
-      </div>
-    </div>
-  `;
-
-  // ✅ INI YANG KURANG
-  setStoreStatus(storeStatus.open);
-}
 
 window.toggleStoreStatus = async function(){
 
-  storeStatus.open = !storeStatus.open;
+  try{
 
-  await setDoc(storeRef, storeStatus);
+    storeStatus.open = !storeStatus.open;
 
-  renderStoreStatus();
-  updateStoreAdminUI();
-  syncStoreUI();
+    await setDoc(storeRef, storeStatus);
+
+    updateStoreUI();
+
+  }catch(err){
+
+    console.log(err);
+
+    alert("Gagal update status toko");
+
+  }
 
 }
 
@@ -1031,23 +1022,6 @@ function isStoreOpen() {
   return storeStatus.open;
 }
 
-function syncStoreUI() {
-  const mini = document.getElementById("storeStatusMini");
-  const text = document.getElementById("storeStatusTextMini");
-
-  if (!mini || !text) return;
-
-  if (storeStatus.open) {
-    mini.classList.add("open");
-    mini.classList.remove("closed");
-    text.innerText = "Open";
-  } else {
-    mini.classList.add("closed");
-    mini.classList.remove("open");
-    text.innerText = "Closed";
-  }
-}
-
 // ================= FIREBASE =================
 
 document.querySelectorAll(".faq-question").forEach(btn => {
@@ -1074,3 +1048,71 @@ document.querySelectorAll(".faq-question").forEach(btn => {
     }
   });
 });
+
+function updateStoreUI(){
+
+  // MINI STATUS
+  const mini =
+    document.getElementById("storeStatusMini");
+
+  const miniText =
+    document.getElementById("storeStatusTextMini");
+
+  // ADMIN STATUS
+  const adminText =
+    document.getElementById("storeStatusText");
+
+  const adminBtn =
+    document.getElementById("storeToggleBtn");
+
+  if(storeStatus.open){
+
+    // MINI
+    mini?.classList.add("open");
+    mini?.classList.remove("closed");
+
+    if(miniText){
+      miniText.innerText = "Open";
+    }
+
+    // ADMIN
+    if(adminText){
+      adminText.innerText = "Toko Buka";
+    }
+
+    if(adminBtn){
+
+      adminBtn.innerText = "BUKA";
+
+      adminBtn.classList.add("open");
+      adminBtn.classList.remove("closed");
+
+    }
+
+  }else{
+
+    // MINI
+    mini?.classList.add("closed");
+    mini?.classList.remove("open");
+
+    if(miniText){
+      miniText.innerText = "Closed";
+    }
+
+    // ADMIN
+    if(adminText){
+      adminText.innerText = "Toko Tutup";
+    }
+
+    if(adminBtn){
+
+      adminBtn.innerText = "TUTUP";
+
+      adminBtn.classList.add("closed");
+      adminBtn.classList.remove("open");
+
+    }
+
+  }
+
+}
