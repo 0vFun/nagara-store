@@ -1262,6 +1262,8 @@ nav a {
   overflow-y:hidden;
   flex-wrap:nowrap;
 
+  width: 100%;
+
   scroll-behavior: smooth;
 
   -webkit-overflow-scrolling: touch;
