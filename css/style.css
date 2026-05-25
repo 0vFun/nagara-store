@@ -1530,3 +1530,17 @@ nav a {
 .faq-item.active .faq-answer {
   padding: 15px;
 }
+
+.nav-about{
+  padding:10px 16px;
+  background:linear-gradient(135deg,#ff6600,#ff8840);
+  color:#fff !important;
+  border-radius:999px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.nav-about:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(255,102,0,.25);
+}
