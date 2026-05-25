@@ -1236,6 +1236,7 @@ nav a {
   padding: 80px 20px;
   background: #f8fafc;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .brands-top small{
@@ -1254,16 +1255,21 @@ nav a {
   color: #64748b;
 }
 
-.brands-grid {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 10px 5px;
+.brands-grid{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  flex-wrap:nowrap;
 
-  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
   -webkit-overflow-scrolling: touch;
-}
+  scroll-snap-type: x mandatory;
+  padding-bottom:10px;
 
+  cursor: grab;
+}
 /* sembunyikan scrollbar biar clean */
 .brands-grid::-webkit-scrollbar {
   display: none;
