@@ -1232,11 +1232,10 @@ nav a {
   border-radius: 50%;
 }
 
-.brands{
+.brands {
   padding: 80px 20px;
   background: #f8fafc;
-  text-align: center;
-  overflow-x: hidden;
+  overflow: visible; /* atau hapus baris ini */
 }
 
 .brands-top small{
@@ -1255,40 +1254,29 @@ nav a {
   color: #64748b;
 }
 
-.brands-grid{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  flex-wrap:nowrap;
-
-  width: 100%;
-
-  scroll-behavior: smooth;
-
-  -webkit-overflow-scrolling: touch;
+.brands-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
   scroll-snap-type: x mandatory;
-  padding-bottom:10px;
+  -webkit-overflow-scrolling: touch;
 
   cursor: grab;
+  touch-action: pan-x;
 }
-/* sembunyikan scrollbar biar clean */
-.brands-grid::-webkit-scrollbar {
-  display: none;
+
+.brands-grid:active {
+  cursor: grabbing;
 }
 
 .brand-card {
   flex: 0 0 auto;
-  width: 140px;
+  width: 160px;
+  min-width: 160px;
+
   scroll-snap-align: start;
-
-  background: white;
-  border-radius: 12px;
-  padding: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .brand-card img {
