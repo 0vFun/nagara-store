@@ -17,7 +17,9 @@ import {
   deleteDoc,
   doc,
   updateDoc,
-  onSnapshot
+  onSnapshot,
+  getDoc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 import {
@@ -43,6 +45,44 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+// ================= STORE STATUS =================
+
+let storeStatus = {
+  open: true,
+  openTime: "08:00",
+  closeTime: "15:30"
+};
+
+const storeRef = doc(db, "settings", "store");
+
+async function loadStoreStatus(){
+
+  try{
+
+    const snap = await getDoc(storeRef);
+
+    if(snap.exists()){
+
+      storeStatus = snap.data();
+
+    }else{
+
+      await setDoc(storeRef, storeStatus);
+
+    }
+
+    renderStoreStatus();
+    updateStoreAdminUI();
+    syncStoreUI();
+
+  }catch(err){
+
+    console.log("STORE STATUS ERROR:", err);
+
+  }
+
+}
 
 // ================= DATA =================
 
@@ -895,6 +935,21 @@ window.addEventListener("load", () => {
     renderStoreStatus?.();
     updateStoreAdminUI?.();
     syncStoreUI?.();
+    loadStoreStatus();
+    onSnapshot(storeRef, (snap)=>{
+
+  if(snap.exists()){
+
+    storeStatus = snap.data();
+
+    renderStoreStatus();
+    updateStoreAdminUI();
+    syncStoreUI();
+
+  }
+
+});
+
   } catch (e) {
     console.log("LOAD ERROR:", e);
   }
@@ -920,12 +975,16 @@ function renderStoreStatus() {
   setStoreStatus(storeStatus.open);
 }
 
-window.toggleStoreStatus = function () {
+window.toggleStoreStatus = async function(){
+
   storeStatus.open = !storeStatus.open;
+
+  await setDoc(storeRef, storeStatus);
 
   renderStoreStatus();
   updateStoreAdminUI();
-  syncStoreUI(); // UPDATE KIRI BAWAH
+  syncStoreUI();
+
 }
 
 function updateStoreAdminUI(){
