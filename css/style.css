@@ -1254,29 +1254,38 @@ nav a {
   color: #64748b;
 }
 
-.brands-grid{
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 20px;
-  align-items: center;
+.brands-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 5px;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-.brand-card{
+/* sembunyikan scrollbar biar clean */
+.brands-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-card {
+  flex: 0 0 auto;
+  width: 140px;
+  scroll-snap-align: start;
+
   background: white;
-  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: 0.3s;
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.brand-card:hover{
-  transform: translateY(-5px);
-}
-
-.brand-card img{
+.brand-card img {
   width: 100%;
-  max-height: 60px;
+  height: auto;
   object-fit: contain;
 }
 
