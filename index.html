@@ -1,892 +1,515 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
-<meta name="description"
-content="Toko bahan bangunan lengkap di Nagara. Jual semen, cat, besi, pasir, dan perlengkapan bangunan lainnya.">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Nagara Store</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HMR Store — Toko bahan bangunan premium di Nagara. Semen, cat, besi, pipa, dan perlengkapan bangunan terlengkap dengan harga terbaik." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>HMR Store — Toko Bahan Bangunan Premium</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-
 <body>
 
-<!-- STORE STATUS FLOAT -->
-<div id="storeStatusMini" class="store-status-mini open">
-  <span class="dot"></span>
-  <span id="storeStatusTextMini">Open</span>
-</div>
-
-<!-- LOADING ANIMATION -->
-
-<div id="loader" class="loader">
-  <div class="spinner"></div>
-</div>
-
-<!-- HEADER -->
-<header class="header">
-
-  <div class="logo-wrap">
-
-  <img
-  src="assets/HMR.png"
-  alt="HMR Logo"
-  class="logo-img">
-
-  <div class="logo-text">
-    <h2>HMR STORE</h2>
-    <p>Toko Bahan Bangunan</p>
+  <!-- PAGE LOADER -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <img src="assets/HMR.png" alt="HMR" class="loader-logo" />
+    </div>
+    <span class="loader-text">HMR STORE</span>
   </div>
 
-</div>
-
-  <nav>
-    <a href="#">Home</a>
-    <a href="#products">Produk</a>
-    <a href="#footer">Kontak</a>
-
-    <a href="https://nagara-store-aboutus.vercel.app/" target="_blank" class="nav-about">
-     About Us
-    </a>
-  </nav>
-
-</header>
-
-<!-- HERO -->
-<section class="hero">
-
-  <div class="hero-content">
-
-    <h1>
-      Toko Bahan Bangunan Premium
-    </h1>
-
-    <p>
-      Material lengkap, murah, dan terpercaya.
-    </p>
-
-    <button class="btn"
-    onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-
-      Belanja Sekarang
-
-    </button>
-
+  <!-- STORE STATUS FLOAT -->
+  <div id="storeStatusMini" class="store-pill open">
+    <span class="store-dot"></span>
+    <span id="storeStatusTextMini">Open</span>
   </div>
 
-</section>
+  <!-- FLOAT BUTTONS -->
+  <button class="cart-float" onclick="toggleCart()" aria-label="Keranjang">
+    <i class="fas fa-shopping-basket"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+  <button class="admin-float" id="adminBtn" onclick="openAdmin()" aria-label="Admin">
+    <i class="fas fa-user-shield"></i>
+  </button>
 
-<!-- INI YANG KAMU MAKSUD -->
-<main class="container">
-
-  <!-- SEARCH -->
-  <section class="search-section">
-    <input type="text" id="search" placeholder="Cari produk...">
-  </section>
-
-  <!-- CATEGORY -->
-  <div id="categoryBar" class="category-bar"></div>
-
-  <!-- PRODUCTS -->
-  <section id="products" class="products">
-    <div id="grid" class="grid"></div>
-  </section>
-
-</main>
-
-<!-- CART FLOAT -->
-<div class="cart-float" onclick="toggleCart()">
-  🛒 <span id="count">0</span>
-</div>
-
-<!-- MODAL, ADMIN, FOOTER tetap di bawah -->
-
-<!-- CART MODAL -->
-
-<div class="modal"
-id="modal">
-
-  <div class="modal-box">
-
-    <span class="close"
-    onclick="toggleCart()">
-
-      ✖
-
-    </span>
-
-    <h2>Keranjang</h2>
-
-    <div id="cart"></div>
-
-    <h3 id="total">
-      Total: Rp 0
-    </h3>
-
-    <button class="btn"
-    onclick="checkout()">
-
-      Checkout WhatsApp
-
-    </button>
-
-  </div>
-
-</div>
-
-<button id="adminBtn"
-onclick="openAdmin()">
-
-  <i class="fas fa-user-shield"></i>
-
-</button>
-
-<!-- ADMIN MODAL -->
-
-<div class="modal" id="adminModal">
-
-  <div class="modal-box admin-premium-box">
-
-    <span class="close"
-    onclick="closeAdmin()">
-
-      ✖
-
-    </span>
-
-    <!-- LOGIN -->
-
-    <div id="adminLoginBox"
-    class="admin-login">
-
-      <div class="admin-login-top">
-
-        <div class="admin-icon">
-
-          <i class="fas fa-shield-halved"></i>
-
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-wrap">
+      <a href="#" class="h-brand">
+        <img src="assets/HMR.png" alt="HMR" class="h-logo" />
+        <div class="h-brand-text">
+          <span class="h-name">HMR <em>STORE</em></span>
+          <span class="h-sub">Toko Bahan Bangunan</span>
         </div>
-
-        <h2>Admin Panel</h2>
-
-        <p>
-          Login untuk mengelola produk dan dashboard toko.
-        </p>
-
-      </div>
-
-      <div class="admin-input-group">
-
-        <label>Email</label>
-
-        <input
-        id="email"
-        type="email"
-        placeholder="Masukkan email">
-
-      </div>
-
-      <div class="admin-input-group">
-
-        <label>Password</label>
-
-        <input
-        id="password"
-        type="password"
-        placeholder="Masukkan password">
-
-      </div>
-
-      <button
-      class="admin-login-btn"
-      onclick="loginAdmin()">
-
-        Login Dashboard
-
-      </button>
-
-    </div>
-
-    <!-- DASHBOARD -->
-
-    <div id="adminDashboard"
-    style="display:none;">
-
-      <div class="admin-header">
-
-        <div>
-
-          <small>ADMIN DASHBOARD</small>
-
-          <h2>HMR STORE</h2>
-
-        </div>
-
-        <button
-        class="logout-btn"
-        onclick="logoutAdmin()">
-
-          Logout
-
-        </button>
-
-      </div>
-
-      <!-- STATS -->
-
-      <div class="admin-stats">
-
-        <div class="admin-stat-card">
-
-          <h3 id="totalProducts">
-            0
-          </h3>
-
-          <p>Total Produk</p>
-
-        </div>
-
-        <div class="admin-stat-card">
-
-          <h3 id="totalStock">
-            0
-          </h3>
-
-          <p>Total Stok</p>
-
-        </div>
-
-      </div>
-
-  <!-- STORE CONTROL -->
-
-<div class="admin-form-card">
-
-  <h3>Kontrol Toko</h3>
-
-  <div class="store-toggle-wrap">
-
-    <span id="storeStatusText">
-      Toko Buka
-    </span>
-
-    <button
-    id="storeToggleBtn"
-    class="store-toggle-btn open"
-    onclick="toggleStoreStatus()">
-
-      BUKA
-
-    </button>
-
-  </div>
-
-</div>
-
-      <!-- FORM -->
-
-      <div class="admin-form-card">
-
-        <h3>Tambah Produk</h3>
-
-        <div class="form-grid">
-
-          <input
-          id="productName"
-          placeholder="Nama Produk">
-
-          <input
-          id="productPrice"
-          type="number"
-          placeholder="Harga">
-
-          <input
-          id="productStock"
-          type="number"
-          placeholder="Stok">
-
-          <input
-          id="productCategory"
-          placeholder="Kategori">
-
-          <input
-          id="productImage"
-          type="file">
-
-        </div>
-
-        <button
-        class="btn"
-        onclick="addProduct()">
-
-          Tambah Produk
-
-        </button>
-
-      </div>
-
-      <!-- PRODUCT LIST -->
-
-      <div class="admin-form-card">
-
-        <h3>Daftar Produk</h3>
-
-        <div id="adminProducts"></div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- WHY US -->
-
-<section class="why-us">
-
-  <div class="why-top">
-
-    <small>KENAPA MEMILIH KAMI</small>
-
-    <h2>
-      Solusi Material Bangunan
-      Terpercaya Untuk Anda
-    </h2>
-
-    <p>
-      HMR STORE hadir memberikan produk berkualitas,
-      harga terbaik, dan pelayanan cepat untuk kebutuhan
-      pembangunan rumah, toko, maupun proyek besar.
-    </p>
-
-  </div>
-
-  <div class="why-grid">
-
-    <!-- ITEM -->
-    <div class="why-card">
-
-      <div class="why-icon">
-        <i class="fas fa-box-open"></i>
-      </div>
-
-      <h3>Produk Lengkap</h3>
-
-      <p>
-        Berbagai kebutuhan bahan bangunan tersedia
-        lengkap dalam satu tempat.
-      </p>
-
-    </div>
-
-    <!-- ITEM -->
-    <div class="why-card">
-
-      <div class="why-icon">
-        <i class="fas fa-tags"></i>
-      </div>
-
-      <h3>Harga Kompetitif</h3>
-
-      <p>
-        Harga bersaing dengan kualitas terbaik
-        untuk semua kalangan pelanggan.
-      </p>
-
-    </div>
-
-    <!-- ITEM -->
-    <div class="why-card">
-
-      <div class="why-icon">
-        <i class="fas fa-truck-fast"></i>
-      </div>
-
-      <h3>Pengiriman Cepat</h3>
-
-      <p>
-        Proses pengiriman cepat dan aman
-        langsung ke lokasi proyek Anda.
-      </p>
-
-    </div>
-
-    <!-- ITEM -->
-    <div class="why-card">
-
-      <div class="why-icon">
-        <i class="fas fa-heart"></i>
-      </div>
-
-      <h3>Terpercaya</h3>
-
-      <p>
-        Dipercaya pelanggan dengan pelayanan
-        ramah dan produk berkualitas.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- BRANDS -->
-
-<section class="brands">
-
-  <div class="brands-top">
-    <small>BRAND PARTNER</small>
-    <h2>Merek Tersedia</h2>
-    <p>
-      Kami bekerja sama dengan brand material bangunan terpercaya
-      untuk memastikan kualitas terbaik.
-    </p>
-  </div>
-
-  <div class="brands-grid">
-
-  <div class="brand-card">
-    <img src="assets/avianbrands.png" alt="Avian Brands">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/dulux.png" alt="Dulux">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/gat.png" alt="GAT">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/gresik.png" alt="Semen Gresik">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/makita.png" alt="Makita">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/maspion.png" alt="Maspion">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/ngk.png" alt="NGK">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/nippon.png" alt="Nippon Paint">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/rucika.png" alt="Rucika">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/taso.png" alt="Taso">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/tekiro.png" alt="Tekiro">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/toho.png" alt="Toho">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/wipro.png" alt="Wipro">
-  </div>
-
-  <div class="brand-card">
-    <img src="assets/yuasa.png" alt="Yuasa">
-  </div>
-
-</div>
-
-</section>
-
-<!-- RETURN POLICY -->
-
-<section class="policy-section">
-
-  <div class="policy-box">
-
-    <div class="policy-icon">
-
-      <i class="fas fa-circle-info"></i>
-
-    </div>
-
-    <div class="policy-content">
-
-      <h2>
-        Kebijakan Return & Komplain
-      </h2>
-
-      <p>
-
-        Jika terdapat kendala pada produk,
-        kesalahan pesanan, atau barang mengalami
-        kerusakan, silakan segera konsultasikan
-        kepada admin kami untuk proses bantuan,
-        komplain, maupun return produk.
-
-      </p>
-
-      <a
-      href="https://wa.me/6282317304798"
-      target="_blank"
-      class="policy-btn">
-
-        Hubungi Admin
-
       </a>
 
+      <nav class="h-nav" id="mainNav">
+        <a href="#" class="hn">Home</a>
+        <a href="#products" class="hn">Produk</a>
+        <a href="#why-us" class="hn">Keunggulan</a>
+        <a href="#brands" class="hn">Merek</a>
+        <a href="#faq" class="hn">FAQ</a>
+        <a href="#footer" class="hn">Kontak</a>
+        <a href="https://nagara-store-aboutus.vercel.app/" target="_blank" class="hn hn-about">
+          About Us <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </nav>
+
+      <button class="h-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-  </div>
-
-</section>
-
-<!-- CTA WHATSAPP -->
-
-<section class="cta-wa">
-
-  <div class="cta-box">
-
-    <h2>
-      Butuh Bantuan Memilih Material?
-    </h2>
-
-    <p>
-      Konsultasikan langsung dengan admin kami via WhatsApp.
-      Respon cepat & siap bantu kebutuhan proyek Anda.
-    </p>
-
-    <a href="https://wa.me/6282317304798"
-    target="_blank"
-    class="cta-btn">
-
-      💬 Chat WhatsApp Sekarang
-
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-top">
+      <img src="assets/HMR.png" alt="HMR" class="mob-logo" />
+      <button onclick="closeMob()" class="mob-close"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="mob-nav">
+      <a href="#" class="m-link">Home</a>
+      <a href="#products" class="m-link">Produk</a>
+      <a href="#why-us" class="m-link">Keunggulan</a>
+      <a href="#brands" class="m-link">Merek</a>
+      <a href="#faq" class="m-link">FAQ</a>
+      <a href="#footer" class="m-link">Kontak</a>
+    </nav>
+    <a href="https://nagara-store-aboutus.vercel.app/" target="_blank" class="mob-about">
+      <i class="fas fa-info-circle"></i> About Us
     </a>
-
+    <a href="https://wa.me/6282317304798" target="_blank" class="mob-wa">
+      <i class="fab fa-whatsapp"></i> Chat WhatsApp
+    </a>
   </div>
 
-</section>
-
-<!-- FAQ -->
-
-<section class="faq">
-
-  <h2>Pertanyaan yang Sering Diajukan</h2>
-
-  <div class="faq-item">
-    <button class="faq-question">Apakah bisa kirim ke luar kota?</button>
-    <div class="faq-answer">
-      <p>Ya, kami melayani pengiriman ke berbagai daerah sesuai ongkir ekspedisi.</p>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80" alt="" class="hero-bg-img" />
+      <div class="hero-scrim"></div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <button class="faq-question">Apakah bisa pembelian grosir?</button>
-    <div class="faq-answer">
-      <p>Bisa, kami menyediakan harga khusus untuk pembelian dalam jumlah besar.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question">Apakah stok selalu update?</button>
-    <div class="faq-answer">
-      <p>Ya, stok dikelola langsung melalui admin panel secara realtime.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question">Apakah bisa konsultasi dulu?</button>
-    <div class="faq-answer">
-      <p>Tentu, silakan hubungi admin melalui WhatsApp.</p>
-    </div>
-  </div>
-
-  <!-- 🔥 TAMBAHAN HARUS DI SINI -->
-  <div class="faq-item">
-    <button class="faq-question">Apakah harga bisa berubah sewaktu-waktu?</button>
-    <div class="faq-answer">
-      <p>Ya, harga bisa berubah tergantung supplier dan stok pasar.</p>
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <button class="faq-question">Apakah ada minimal order?</button>
-    <div class="faq-answer">
-      <p>Tidak ada minimal order untuk pembelian biasa.</p>
-    </div>
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer id="footer" class="footer">
-
-  <div class="footer-container">
-
-    <!-- LEFT -->
-    <div class="footer-brand">
-
-      <div class="footer-logo">
-
-        <img
-        src="assets/HMR.png"
-        alt="HMR Logo">
-
-        <div>
-
-          <h2>HMR STORE</h2>
-
-          <p>
-            Toko Bahan Bangunan Premium
-          </p>
-
-        </div>
-
+    <div class="hero-body">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Material Premium · Harga Terbaik · Stok Real-time
       </div>
 
-      <p class="footer-desc">
+      <h1 class="hero-title">
+        <span class="ht-line">Bahan Bangunan</span>
+        <span class="ht-line ht-accent">Berkualitas</span>
+        <span class="ht-line">Untuk Proyek Anda</span>
+      </h1>
 
-        Menyediakan berbagai kebutuhan material bangunan
-        berkualitas dengan harga terbaik dan pelayanan terpercaya.
-
+      <p class="hero-desc">
+        HMR Store menyediakan material bangunan lengkap — semen, cat, besi, pipa, dan kebutuhan konstruksi lainnya. Terpercaya, kompetitif, dan siap melayani.
       </p>
 
-    </div>
-
-    <!-- CENTER -->
-    <div class="footer-links">
-
-      <h3>Navigasi</h3>
-
-      <a href="#">Home</a>
-      <a href="#products">Produk</a>
-      <a href="#footer">Kontak</a>
-
-    </div>
-
-    <!-- RIGHT -->
-    <div class="footer-social">
-
-  <!-- WhatsApp -->
-  <a
-  href="https://wa.me/6282317304798"
-  target="_blank">
-
-    <i class="fab fa-whatsapp"></i>
-
-  </a>
-
-  <!-- Instagram -->
-  <a
-  href="https://instagram.com/"
-  target="_blank">
-
-    <i class="fab fa-instagram"></i>
-
-  </a>
-
-  <!-- Facebook -->
-  <a
-  href="https://facebook.com/"
-  target="_blank">
-
-    <i class="fab fa-facebook"></i>
-
-  </a>
-
-  <!-- Shopee -->
-  <a
-  href="https://s.shopee.co.id/gNAzWZaoH?share_channel_code=1"
-  target="_blank">
-
-    <i class="fas fa-bag-shopping"></i>
-
-  </a>
-
-</div>
-
-    </div>
-
-  </div>
-
-  <!-- BOTTOM -->
-  <div class="footer-bottom">
-
-    <p>
-      © 2026 HMR STORE — All Rights Reserved
-    </p>
-
-    <div class="footer-credit">
-
-      <img
-      src="assets/LOGO4721.png"
-      alt="Faadhil Digital">
-
-      <span>
-        Website by Faadhil Digital
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
-
-<div class="modal" id="editModal">
-
-  <div class="modal-box">
-
-    <span class="close"
-    onclick="closeEditModal()">
-      ✖
-    </span>
-
-    <h2>Edit Produk</h2>
-
-    <div class="edit-form">
-
-      <input id="editName"
-      placeholder="Nama Produk">
-
-      <input id="editPrice"
-      type="number"
-      placeholder="Harga">
-
-      <input id="editStock"
-      type="number"
-      placeholder="Stok">
-
-      <input id="editCategory"
-      placeholder="Kategori">
-
-      <input id="editImage"
-      type="file">
-
-    </div>
-
-    <button class="btn"
-    onclick="saveEditProduct()">
-
-      Simpan Perubahan
-
-    </button>
-
-  </div>
-
-</div>
-
-<!-- PRODUCT DETAIL MODAL -->
-
-<div class="modal" id="productModal">
-
-  <div class="modal-box product-modal-box">
-
-    <span class="close"
-    onclick="closeProductModal()">
-
-      ✖
-
-    </span>
-
-    <div class="product-detail">
-
-      <div class="product-detail-image">
-
-        <img
-        id="detailImage"
-        src=""
-        alt="">
-
-      </div>
-
-      <div class="product-detail-info">
-
-        <span id="detailCategory"
-        class="detail-category">
-        </span>
-
-        <h2 id="detailName"></h2>
-
-        <p id="detailPrice"
-        class="detail-price">
-        </p>
-
-        <p id="detailStock"
-        class="detail-stock">
-        </p>
-
-        <p class="detail-desc">
-
-          Produk berkualitas tinggi dengan
-          material terbaik dan cocok untuk
-          berbagai kebutuhan pembangunan.
-
-        </p>
-
-        <button
-        class="btn detail-btn"
-        id="detailBtn">
-
-          Tambah ke Keranjang
-
+      <div class="hero-ctas">
+        <button class="cta-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-boxes-stacked"></i> Lihat Produk
         </button>
-
+        <a href="https://wa.me/6282317304798?text=Halo%20admin%2C%20saya%20ingin%20tanya%20harga%20material" target="_blank" class="cta-wa">
+          <i class="fab fa-whatsapp"></i> Tanya Harga
+        </a>
       </div>
 
+      <div class="hero-badges">
+        <div class="h-badge"><i class="fas fa-check-circle"></i> Produk Lengkap</div>
+        <div class="h-badge"><i class="fas fa-check-circle"></i> Pengiriman Cepat</div>
+        <div class="h-badge"><i class="fas fa-check-circle"></i> Stok Update Realtime</div>
+      </div>
     </div>
 
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+    </div>
+  </section>
+
+  <!-- SHOP SECTION -->
+  <main id="shop-main">
+
+    <!-- SEARCH + FILTER -->
+    <div class="shop-toolbar" id="products">
+      <div class="toolbar-inner">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search" placeholder="Cari produk bahan bangunan..." />
+          <button class="search-clear" id="searchClear" style="display:none" onclick="clearSearch()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="cat-bar" id="categoryBar"></div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS HEADER -->
+    <div class="products-header-bar">
+      <div class="phb-inner">
+        <h2 class="phb-title">
+          <span id="catLabel">Semua Produk</span>
+        </h2>
+        <span class="phb-count" id="productTotalBadge">Memuat...</span>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="products-section">
+      <div id="grid" class="products-grid"></div>
+    </div>
+
+  </main>
+
+  <!-- WHY US -->
+  <section class="why-us" id="why-us">
+    <div class="con">
+      <div class="sec-label">Kenapa Memilih Kami</div>
+      <h2 class="sec-heading">Solusi Material Bangunan<br/><em>Terpercaya Untuk Anda</em></h2>
+      <p class="sec-para">HMR Store hadir memberikan produk berkualitas, harga terbaik, dan pelayanan cepat untuk kebutuhan pembangunan rumah, toko, maupun proyek besar.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="wc-num">01</div>
+          <div class="wc-icon"><i class="fas fa-box-open"></i></div>
+          <h3>Produk Lengkap</h3>
+          <p>Berbagai kebutuhan bahan bangunan tersedia lengkap dalam satu tempat — tanpa perlu pindah-pindah toko.</p>
+        </div>
+        <div class="why-card">
+          <div class="wc-num">02</div>
+          <div class="wc-icon"><i class="fas fa-tags"></i></div>
+          <h3>Harga Kompetitif</h3>
+          <p>Harga bersaing langsung dari distributor dengan kualitas terjamin untuk semua kalangan pelanggan.</p>
+        </div>
+        <div class="why-card">
+          <div class="wc-num">03</div>
+          <div class="wc-icon"><i class="fas fa-truck-fast"></i></div>
+          <h3>Pengiriman Cepat</h3>
+          <p>Proses pengiriman aman dan cepat langsung ke lokasi proyek Anda dengan armada terpercaya.</p>
+        </div>
+        <div class="why-card">
+          <div class="wc-num">04</div>
+          <div class="wc-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Terpercaya</h3>
+          <p>Dipercaya pelanggan setia dengan rekam jejak pelayanan ramah dan produk berkualitas konsisten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section class="brands-sec" id="brands">
+    <div class="con">
+      <div class="sec-label">Brand Partner</div>
+      <h2 class="sec-heading">Merek Resmi <em>Tersedia</em></h2>
+      <p class="sec-para">Kami bekerja sama dengan merek material bangunan terkemuka untuk menjamin kualitas setiap produk.</p>
+    </div>
+    <div class="brands-track">
+      <div class="brands-runner" id="brandsGrid">
+        <div class="b-card"><img src="assets/avianbrands.png" alt="Avian Brands"/></div>
+        <div class="b-card"><img src="assets/dulux.png" alt="Dulux"/></div>
+        <div class="b-card"><img src="assets/gat.png" alt="GAT"/></div>
+        <div class="b-card"><img src="assets/gresik.png" alt="Semen Gresik"/></div>
+        <div class="b-card"><img src="assets/makita.png" alt="Makita"/></div>
+        <div class="b-card"><img src="assets/maspion.png" alt="Maspion"/></div>
+        <div class="b-card"><img src="assets/ngk.png" alt="NGK"/></div>
+        <div class="b-card"><img src="assets/nippon.png" alt="Nippon Paint"/></div>
+        <div class="b-card"><img src="assets/rucika.png" alt="Rucika"/></div>
+        <div class="b-card"><img src="assets/taso.png" alt="Taso"/></div>
+        <div class="b-card"><img src="assets/tekiro.png" alt="Tekiro"/></div>
+        <div class="b-card"><img src="assets/toho.png" alt="Toho"/></div>
+        <div class="b-card"><img src="assets/wipro.png" alt="Wipro"/></div>
+        <div class="b-card"><img src="assets/yuasa.png" alt="Yuasa"/></div>
+        <!-- duplicate for infinite scroll -->
+        <div class="b-card"><img src="assets/avianbrands.png" alt="Avian Brands"/></div>
+        <div class="b-card"><img src="assets/dulux.png" alt="Dulux"/></div>
+        <div class="b-card"><img src="assets/gat.png" alt="GAT"/></div>
+        <div class="b-card"><img src="assets/gresik.png" alt="Semen Gresik"/></div>
+        <div class="b-card"><img src="assets/makita.png" alt="Makita"/></div>
+        <div class="b-card"><img src="assets/maspion.png" alt="Maspion"/></div>
+        <div class="b-card"><img src="assets/ngk.png" alt="NGK"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POLICY -->
+  <section class="policy-sec">
+    <div class="con">
+      <div class="policy-inner">
+        <div class="policy-badge"><i class="fas fa-rotate-left"></i></div>
+        <div class="policy-text">
+          <h3>Kebijakan Return &amp; Komplain</h3>
+          <p>Jika terdapat kendala pada produk, kesalahan pesanan, atau barang mengalami kerusakan — silakan hubungi admin kami. Kami siap membantu proses bantuan, komplain, maupun return produk.</p>
+        </div>
+        <a href="https://wa.me/6282317304798?text=Halo%20admin%2C%20saya%20ingin%20komplain%20produk" target="_blank" class="policy-cta">
+          <i class="fab fa-whatsapp"></i> Hubungi Admin
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner-bg"></div>
+    <div class="con cta-banner-inner">
+      <div class="cta-banner-text">
+        <div class="sec-label light">Butuh Bantuan?</div>
+        <h2>Konsultasi Material<br/><em>Via WhatsApp</em></h2>
+        <p>Tanyakan produk, cek stok, atau minta penawaran harga. Admin kami siap membantu 6 hari seminggu.</p>
+      </div>
+      <div class="cta-banner-action">
+        <a href="https://wa.me/6282317304798?text=Halo%20admin%20HMR%20Store%2C%20saya%20ingin%20konsultasi" target="_blank" class="cta-wa-big">
+          <i class="fab fa-whatsapp"></i>
+          Chat Sekarang
+        </a>
+        <span class="cta-note">Respon cepat · Ramah · Profesional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-sec" id="faq">
+    <div class="con">
+      <div class="sec-label">FAQ</div>
+      <h2 class="sec-heading">Pertanyaan yang<br/><em>Sering Diajukan</em></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah bisa kirim ke luar kota?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Ya, kami melayani pengiriman ke berbagai daerah sesuai ongkir ekspedisi yang berlaku.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah bisa pembelian grosir?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Bisa. Kami menyediakan harga khusus untuk pembelian dalam jumlah besar. Hubungi admin untuk penawaran terbaik.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah stok selalu update?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Ya, stok dikelola langsung melalui admin panel secara realtime menggunakan Firebase.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah bisa konsultasi dulu sebelum beli?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Tentu. Silakan hubungi admin melalui WhatsApp. Kami siap membantu memilihkan material yang tepat untuk proyek Anda.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah harga bisa berubah sewaktu-waktu?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Ya, harga dapat berubah mengikuti fluktuasi harga pasar dan supplier. Konfirmasi harga terbaru selalu bisa dilakukan via WhatsApp.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Apakah ada minimal order?</span><i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Tidak ada minimal order untuk pembelian satuan. Untuk pembelian grosir ada ketentuan tersendiri.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="footer-main">
+      <div class="con footer-grid">
+        <div class="fg-brand">
+          <div class="fg-logo">
+            <img src="assets/HMR.png" alt="HMR" />
+            <div>
+              <div class="fg-name">HMR <em>STORE</em></div>
+              <div class="fg-tagline">Toko Bahan Bangunan Premium</div>
+            </div>
+          </div>
+          <p class="fg-desc">Menyediakan berbagai kebutuhan material bangunan berkualitas dengan harga terbaik dan pelayanan terpercaya di Nagara.</p>
+          <div class="fg-socials">
+            <a href="https://wa.me/6282317304798" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://s.shopee.co.id/gNAzWZaoH?share_channel_code=1" target="_blank" aria-label="Shopee"><i class="fas fa-bag-shopping"></i></a>
+          </div>
+        </div>
+
+        <div class="fg-nav">
+          <div class="fg-col-title">Navigasi</div>
+          <a href="#">Home</a>
+          <a href="#products">Produk</a>
+          <a href="#why-us">Keunggulan</a>
+          <a href="#brands">Merek</a>
+          <a href="#faq">FAQ</a>
+          <a href="#footer">Kontak</a>
+        </div>
+
+        <div class="fg-hours">
+          <div class="fg-col-title">Jam Operasional</div>
+          <div class="oh-row"><span>Senin – Jumat</span><span>08:00 – 17:00</span></div>
+          <div class="oh-row"><span>Sabtu</span><span>08:00 – 15:30</span></div>
+          <div class="oh-row oh-closed"><span>Minggu</span><span>Tutup</span></div>
+          <a href="https://wa.me/6282317304798" target="_blank" class="fg-wa">
+            <i class="fab fa-whatsapp"></i> +62 823-1730-4798
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="con fb-inner">
+        <span>© 2026 HMR Store — All Rights Reserved</span>
+        <a href="https://nagara-store2.vercel.app/" class="fb-credit">
+          <img src="assets/LOGO4721.png" alt="Faadhil Digital" />
+          <span>Website by <strong>Faadhil Digital</strong></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════ MODALS ═══════════ -->
+
+  <!-- CART MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-scrim" onclick="toggleCart()"></div>
+    <div class="cart-panel">
+      <div class="cart-head">
+        <h2><i class="fas fa-shopping-basket"></i> Keranjang Belanja</h2>
+        <button class="m-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="cart-body" id="cart"></div>
+      <div class="cart-foot">
+        <div class="cart-total" id="total">Total: Rp 0</div>
+        <button class="cta-primary full" onclick="checkout()">
+          <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+        </button>
+      </div>
+    </div>
   </div>
 
-</div>
-
-<!-- ADMIN LOADING -->
-
-<div id="adminLoader" class="admin-loader">
-
-  <div class="admin-loader-box">
-
-    <div class="admin-loader-logo">
-
-      <i class="fas fa-shield-halved"></i>
-
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal" id="productModal">
+    <div class="modal-scrim" onclick="closeProductModal()"></div>
+    <div class="pd-panel">
+      <button class="m-close abs-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+      <div class="pd-grid">
+        <div class="pd-img-wrap">
+          <img id="detailImage" src="" alt="" />
+          <span id="detailCategory" class="pd-cat-badge"></span>
+        </div>
+        <div class="pd-info">
+          <h2 id="detailName"></h2>
+          <p id="detailPrice" class="pd-price"></p>
+          <p id="detailStock" class="pd-stock"></p>
+          <p class="pd-desc">Produk berkualitas dengan material terbaik. Cocok untuk berbagai kebutuhan pembangunan dan renovasi. Stok tersedia, hubungi admin untuk info harga terbaru.</p>
+          <button class="cta-primary full" id="detailBtn">
+            <i class="fab fa-whatsapp"></i> Tanya Harga
+          </button>
+        </div>
+      </div>
     </div>
-
-    <h2>Memuat Dashboard</h2>
-
-    <p>
-      Menyiapkan panel admin...
-    </p>
-
-    <div class="admin-loader-bar">
-
-      <div class="admin-loader-progress"></div>
-
-    </div>
-
   </div>
 
-</div>
+  <!-- ADMIN MODAL -->
+  <div class="modal" id="adminModal">
+    <div class="modal-scrim" onclick="closeAdmin()"></div>
+    <div class="admin-panel">
+      <button class="m-close abs-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
 
-<script type="module"
-src="js/script.js"></script>
+      <!-- LOGIN BOX -->
+      <div id="adminLoginBox" class="admin-login">
+        <div class="al-head">
+          <div class="al-icon"><i class="fas fa-shield-halved"></i></div>
+          <h2>Admin Panel</h2>
+          <p>Login untuk mengelola produk dan dashboard toko.</p>
+        </div>
+        <div class="al-field">
+          <label>Email</label>
+          <input id="email" type="email" placeholder="admin@hmrstore.com" />
+        </div>
+        <div class="al-field">
+          <label>Password</label>
+          <input id="password" type="password" placeholder="••••••••" />
+        </div>
+        <button class="cta-primary full admin-login-btn" onclick="loginAdmin()">
+          Login Dashboard
+        </button>
+      </div>
 
+      <!-- DASHBOARD -->
+      <div id="adminDashboard" class="admin-dash" style="display:none">
+        <div class="ad-head">
+          <div>
+            <small>ADMIN DASHBOARD</small>
+            <h2>HMR STORE</h2>
+          </div>
+          <button class="logout-btn" onclick="logoutAdmin()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+
+        <div class="ad-stats">
+          <div class="ad-stat"><h3 id="totalProducts">0</h3><p>Total Produk</p></div>
+          <div class="ad-stat"><h3 id="totalStock">0</h3><p>Total Stok</p></div>
+        </div>
+
+        <div class="ad-card">
+          <h3>Kontrol Toko</h3>
+          <div class="store-ctrl">
+            <span id="storeStatusText">Toko Buka</span>
+            <button id="storeToggleBtn" class="store-toggle open" onclick="toggleStoreStatus()">BUKA</button>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <h3>Tambah Produk</h3>
+          <div class="ad-form">
+            <input id="productName" placeholder="Nama Produk" />
+            <input id="productStock" type="number" placeholder="Stok" />
+            <input id="productCategory" placeholder="Kategori" />
+            <label class="file-label" for="productImage">
+              <i class="fas fa-image"></i> Pilih Gambar
+              <input id="productImage" type="file" accept="image/*" />
+            </label>
+          </div>
+          <button class="cta-primary mt-16" onclick="addProduct()">
+            <i class="fas fa-plus"></i> Tambah Produk
+          </button>
+        </div>
+
+        <div class="ad-card">
+          <h3>Daftar Produk</h3>
+          <div id="adminProducts" class="admin-plist"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="modal" id="editModal">
+    <div class="modal-scrim" onclick="closeEditModal()"></div>
+    <div class="edit-panel">
+      <button class="m-close abs-close" onclick="closeEditModal()"><i class="fas fa-times"></i></button>
+      <h2 class="ep-title"><i class="fas fa-pen"></i> Edit Produk</h2>
+      <div class="ad-form">
+        <input id="editName" placeholder="Nama Produk" />
+        <input id="editStock" type="number" placeholder="Stok" />
+        <input id="editCategory" placeholder="Kategori" />
+        <label class="file-label" for="editImage">
+          <i class="fas fa-image"></i> Ganti Gambar (opsional)
+          <input id="editImage" type="file" accept="image/*" />
+        </label>
+      </div>
+      <button class="cta-primary full mt-16" onclick="saveEditProduct()">
+        <i class="fas fa-save"></i> Simpan Perubahan
+      </button>
+    </div>
+  </div>
+
+  <!-- ADMIN LOADER -->
+  <div id="adminLoader" class="admin-loader">
+    <div class="aload-box">
+      <div class="aload-icon"><i class="fas fa-shield-halved"></i></div>
+      <h2>Memuat Dashboard</h2>
+      <p>Menyiapkan panel admin...</p>
+      <div class="aload-bar"><div class="aload-fill"></div></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/script.js"></script>
 </body>
 </html>
